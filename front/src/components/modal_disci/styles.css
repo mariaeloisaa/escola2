@@ -1,0 +1,110 @@
+.modal-modal{
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-modal{
+    background-color: #E30613;
+    width: 500px;
+    height: 400px;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-around;
+    padding: 20px;
+    border-radius: 5px;
+
+    h2{
+        color: white;
+    }
+}
+
+.body-modal input {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+
+    
+}
+
+.ni-modal{
+    width: 100px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.nome-modal{
+    width: 300px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.tel-modal{
+    width: 300px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.email-modal{
+    width: 300px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.ocupacao-modal{
+    width: 300px;
+    padding: 5px;
+    margin-top: 10px;
+    height: 20px;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.button-save{
+    width: 150;
+    height: 50px;
+    margin-top: 30px;
+    box-shadow: 40px;
+}
+
+.button-save:hover{
+    color: aquamarine;
+}
+
+.close-button{
+    display: flex;
+    border-radius: 50px;
+    font-size: 12px;
+}
+
+.close-button:hover{
+    color: darkgreen;
+}
+
+.head-modal{
+    display: flex;
+    justify-content: right;
+}
+
+.footer-modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}

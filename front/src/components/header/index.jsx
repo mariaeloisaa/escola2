@@ -9,7 +9,7 @@ export default function Header() {
             </div>
             <section className="body_header">
                 <div className="title">
-                    <h1>Professores</h1>
+                    <h1>HEADER</h1>
                 </div>
                 <div className="nav">
                     <span>CREATE</span>
