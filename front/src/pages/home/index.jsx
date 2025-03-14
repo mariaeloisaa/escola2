@@ -33,7 +33,7 @@ export default function Home() {
         }
 
         fetchData()
-    }, [])
+    }, [seta])
 
     const apagar = async (id) => {
         if (window.confirm("Tem certeza? ")) {
@@ -121,7 +121,7 @@ export default function Home() {
                                     <div className="col5"><td>{professor.nome}</td></div>
                                     <div className="col6"><td>{professor.email}</td></div>
                                     <div className="col7"><td>{professor.tel}</td></div>
-                                    <div className="col8"><td>{professor.ocupacaoacao}</td></div>
+                                    <div className="col8"><td>{professor.ocupacao}</td></div>
                                 </tr>
                             ))}
                         </tbody>
@@ -146,6 +146,8 @@ export default function Home() {
                     isOpen={modalOpen}
                     onClose={()=>setModalOpen(false)}
                     professorSelecionado={professorSelecionado}
+                    setSeta = {setSeta}
+                    seta = {seta}
                 />
             </div>
             <Footer />

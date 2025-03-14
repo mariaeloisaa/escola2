@@ -9,13 +9,13 @@ export default function Header() {
             </div>
             <section className="body_header">
                 <div className="title">
-                    <h1>Header</h1>
+                    <h1>Professores</h1>
                 </div>
                 <div className="nav">
-                    <span>Create</span>
-                    <span>Read</span>
-                    <span>Update</span>
-                    <span>Delete</span>
+                    <span>CREATE</span>
+                    <span>READ</span>
+                    <span>UPDATE</span>
+                    <span>DELETE</span>
                 </div>
             </section>
         </div>

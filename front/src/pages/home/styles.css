@@ -26,6 +26,9 @@ body{
 .icons{
     display: flex;
     flex-direction: row;
+    th{
+        color: #E30613;
+    }
 }
 
 .col1{
@@ -68,7 +71,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(143, 143, 143);
+    background-color: #E30613;
     width: 95%;
     height: 50px;
     border-radius: 10px;
@@ -81,7 +84,7 @@ body{
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background-color: rgb(25, 155, 155);
+    background-color: white;
     margin-left: 10px;
 }
 .btn2{

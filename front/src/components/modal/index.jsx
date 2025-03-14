@@ -5,7 +5,9 @@ import axios from "axios";
 const ModalProfessores = ({
     isOpen,
     onClose,
-    professorSelecionado
+    professorSelecionado,
+    setSeta,
+    seta 
 
 })=>{
     if(!isOpen) return null
@@ -31,8 +33,8 @@ const ModalProfessores = ({
 
     const newTeacher = async() =>{
         try {
-            const response = await axios.post('http://127.0.0.1:800/api/professores', 
-                {ni: ni,
+            await axios.post('http://127.0.0.1:8000/api/professores', 
+                {   ni: ni,
                     nome: nome,
                     email: email,
                     tel: tel,
@@ -44,11 +46,34 @@ const ModalProfessores = ({
                 }
             )
             console.log("prof inserido sucefful")
+            setSeta(!seta)
             onClose(true)
         } catch (error) {
             
         }
     }
+
+    const editTeacher = async() =>{
+        try {
+            await axios.put(`http://127.0.0.1:8000/api/professor/${professorSelecionado.id}`, 
+                {   ni: ni,
+                    nome: nome,
+                    email: email,
+                    tel: tel,
+                    ocupacao: ocupacao
+                },{
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    }
+                }
+            )
+            setSeta(!seta)
+            onClose(true)
+        } catch (error) {
+            
+        }
+    }
+
 
     return(
         <div className="modal-modal">
@@ -97,7 +122,11 @@ const ModalProfessores = ({
                     </form>
                 </div>
                 <div className="footer-modal">
-                    <button className= "button-save" type="submit" onClick={()=>newTeacher}>Salvar</button> 
+                    <button 
+                        className= "button-save" 
+                        type="submit" 
+                        onClick={professorSelecionado? editTeacher : newTeacher}>
+                        {professorSelecionado ? "Atualizar" : "Salvar"}</button> 
                 </div>
             </div>
         </div>
