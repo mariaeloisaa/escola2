@@ -53,28 +53,28 @@ export default function Disciplina(){
         }
     }
 
-    const criar = async(novaDisciplina)=>{
-        console.log("Novo Professor: ", novaDisciplina)
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/disciplinas',
-                {
-                    disciplina: novaDisciplina.disciplina,
-                    codigo: novaDisciplina.codigo,
-                    cargaHora: novaDisciplina.cargaHora,
-                },{
-                    headers:{
-                        Authorization: `Bearer ${token}`
-                    }
-                }
-            )
-            console.log("Dados inseridos com sucesso!", response.data)
-            setDados([...dados, novaDisciplina])
-            setModalOpen(false)
-        } catch (error) {
-            console.error(error)
-        }
+    // const criar = async(novaDisciplina)=>{
+    //     console.log("Novo Professor: ", novaDisciplina)
+    //     try {
+    //         const response = await axios.post('http://127.0.0.1:8000/api/disciplinas',
+    //             {
+    //                 disciplina: novaDisciplina.disciplina,
+    //                 codigo: novaDisciplina.codigo,
+    //                 cargaHora: novaDisciplina.cargaHora,
+    //             },{
+    //                 headers:{
+    //                     Authorization: `Bearer ${token}`
+    //                 }
+    //             }
+    //         )
+    //         console.log("Dados inseridos com sucesso!", response.data)
+    //         setDados([...dados, novaDisciplina])
+    //         setModalOpen(false)
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
 
-    }
+    // }
 
 
     const atualizar = async (disciplina)=>{
@@ -94,8 +94,9 @@ export default function Disciplina(){
                                 <div className="col1"></div>
                                 <div className="col2"></div>
                                 <div className="col3"><th>ID</th></div>
-                                <div className="col4"><th>CÓDIGO</th></div>
-                                <div className="col5"><th>CARGA HORÁRIA</th></div>
+                                <div className="col4"><th>DISCIPLINA</th></div>
+                                <div className="col5"><th>CÓDIGO</th></div>
+                                <div className="col6"><th>CARGA HORÁRIA</th></div>
                             </tr>
                         </thead>
                         <tbody> 

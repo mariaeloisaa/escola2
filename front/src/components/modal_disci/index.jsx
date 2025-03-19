@@ -22,14 +22,15 @@ const ModalDisciplina = ({
         e.preventDefault()
         const novaDisciplina = {disciplina, codigo, cargaHora}
         if(disciplinaSelecionada){
-            atualizar({...disciplinaSelecionada, ...novaDisciplina})
+            editDisci
         }else{
             console.log("Teste nova disciplina: ", novaDisciplina)
-            criar(novaDisciplina)
+            newDisci
         }
     }
 
     const newDisci = async() =>{
+        console.log([disciplina, codigo, cargaHora])
         try {
             await axios.post('http://127.0.0.1:8000/api/disciplinas', 
                 {   disciplina: disciplina,
@@ -42,14 +43,15 @@ const ModalDisciplina = ({
                 }
             )
             console.log("disci inserido sucefful")
-            setSeta(!seta)
+            setSeta(!seta);
             onClose(true)
         } catch (error) {
-            
+            console.log(error)
         }
     }
 
     const editDisci = async() =>{
+
         try {
             await axios.put(`http://127.0.0.1:8000/api/disciplina/${disciplinaSelecionada.id}`, 
                 {   disciplina: disciplina,
@@ -97,18 +99,6 @@ const ModalDisciplina = ({
                                 placeholder="cargaHora"
                                 onChange={(e)=>setCargaHora(e.target.value)}
                             />
-                            <input
-                                className="tel-modal"
-                                value={tel}
-                                placeholder="tel"
-                                onChange={(e)=>setTel(e.target.value)}
-                            />
-                            <input
-                                className="ocupacao-modal"
-                                value={ocupacao}
-                                placeholder="ocupacao"
-                                onChange={(e)=>setOcupacao(e.target.value)}
-                            />
                         </div>
                         <div className="caixa2">
                             
@@ -118,8 +108,8 @@ const ModalDisciplina = ({
                 <div className="footer-modal">
                     <button 
                         className= "button-save" 
-                        type="submit" 
-                        onClick={disciplinaSelecionada? editTeacher : newTeacher}>
+                         
+                        onClick={disciplinaSelecionada? editDisci : newDisci}>
                         {disciplinaSelecionada ? "Atualizar" : "Salvar"}</button> 
                 </div>
             </div>

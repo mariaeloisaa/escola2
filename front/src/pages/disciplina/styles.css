@@ -26,8 +26,10 @@ body{
 .icons{
     display: flex;
     flex-direction: row;
+    gap: 20px;
     th{
         color: #E30613;
+        
     }
 }
 
@@ -46,24 +48,16 @@ body{
 }
 .col4{
     /* background-color: rgb(209, 197, 37); */
-    width: 60px;
+    width: 200px;
 }
 .col5{
     /* background-color: aqua; */
     width: 200px;
 }
-.col6{
-    /* background-color: rgb(209, 197, 37); */
-    width: 200px;
-}
-.col7{
-    /* background-color: aqua; */
-    width: 150px;
-}
 
-.col8{
-    /* background-color: rgb(209, 197, 37); */
-    width: 25px;
+.col6{
+    /* background-color: aqua; */
+    width: 200px;
 }
 
 .footer_table{
