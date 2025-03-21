@@ -4,7 +4,7 @@ import { FaEdit, FaTrash, FaPlus, FaSearch } from 'react-icons/fa'
 import './styles.css'
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import ModalProfessores from "../../components/modal_prof";
+import ModalProfessores from "../../components/modals/prof";
 
 
 export default function Professor() {

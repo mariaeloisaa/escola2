@@ -10,3 +10,18 @@ class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
         fields = '__all__'
+
+class TurmaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turma
+        fields = '__all__'
+
+class CursoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turma
+        fields = '__all__'
+
+class AmbienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Turma
+        fields = '__all__'

@@ -22,7 +22,7 @@ def listar_professores(request):
         else:
             return Response(serializer.data, status=status.HTTP_400_BAD_REQUEST)
             
-
+# PROFESSORES
 class ProfessoresView(ListCreateAPIView):
     queryset = Professor.objects.all()
     serializer_class = ProfessorSerializer
@@ -33,6 +33,8 @@ class ProfessoresDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = ProfessorSerializer
     permission_classes = [IsAuthenticated]
 
+
+# DISCIPLINAS
 class DisciplinasView(ListCreateAPIView):
     queryset = Disciplina.objects.all()
     serializer_class = DisciplinaSerializer
@@ -44,4 +46,36 @@ class DisciplinasDetailView(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
+# TURMAS
+class TurmasView(ListCreateAPIView): 
+    queryset = Turma.objects.all()
+    serializer_class = TurmaSerializer
+    permission_classes = [IsAuthenticated]
 
+class TurmasDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Turma.objects.all()
+    serializer_class = TurmaSerializer
+    permission_classes = [IsAuthenticated]
+
+#CURSOS 
+class CursosView(ListCreateAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+    permission_classes = [IsAuthenticated]
+
+class CursosDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Curso.objects.all()
+    serializer_class = CursoSerializer
+    permission_classes = [IsAuthenticated]
+
+# AMBIENTES 
+class AmbientesView(ListCreateAPIView):
+    queryset = Ambiente.objects.all()
+    serializer_class = AmbienteSerializer
+    permission_classes = [IsAuthenticated]
+
+class AmbientesDetailView(RetrieveUpdateDestroyAPIView):
+    queryset = Ambiente.objects.all()
+    serializer_class = AmbienteSerializer
+    permission_classes = [IsAuthenticated]
+    
