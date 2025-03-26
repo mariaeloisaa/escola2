@@ -21,7 +21,7 @@ class Turma(models.Model):
 class Curso(models.Model):
 
     TIPOS_CURSOS = [
-        ("CI", "Curso técnico"),
+        ("CT", "Curso técnico"),
         ("CAI", "Curso Aprendizagem Industrial"),
         ("CS", "Curso Superior"),
         ("FIC", "Formação Inicial e Continuada"),
@@ -29,7 +29,7 @@ class Curso(models.Model):
 
     codigo = models.CharField(max_length=255)
     curso = models.CharField(max_length=255)
-    tipo_curso = models.CharField(max_length=5, choices=TIPOS_CURSOS)
+    tipo_curso = models.CharField(max_length=5, choices=TIPOS_CURSOS, default="CT")
     horas_aula = models.FloatField()
     sigla = models.CharField(max_length=255)
 
@@ -46,5 +46,5 @@ class Ambiente(models.Model):
     sala = models.CharField(max_length=255)
     capacidade = models.IntegerField()
     responsavel = models.CharField(max_length=255)
-    periodo = models.CharField(max_length=1, choices=PERIODOS)
+    periodo = models.CharField(max_length=1, choices=PERIODOS, default="M")
     

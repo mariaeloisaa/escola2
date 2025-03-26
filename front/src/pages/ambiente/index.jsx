@@ -4,22 +4,22 @@ import { FaEdit, FaTrash, FaPlus, FaSearch } from 'react-icons/fa'
 import './styles.css'
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import ModalProfessores from "../../components/modals/prof";
+import ModalAmbientes from "../../components/modals/ambiente";
 
 
-export default function Professor() {
+export default function Ambiente() {
     const [dados, setDados] = useState([])
     const token = localStorage.getItem('token')
     const [seta, setSeta] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
-    const [professorSelecionado, setProfessorSelecionado] = useState(null)
+    const [ambienteSelecionado, setAmienteSelecionado] = useState(null)
 
     useEffect(() => {
         if (!token) return;
         
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/api/professores',
+                const response = await axios.get('http://127.0.0.1:8000/api/ambientes',
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -38,14 +38,14 @@ export default function Professor() {
     const apagar = async (id) => {
         if (window.confirm("Tem certeza? ")) {
             try {
-                await axios.delete(`http://127.0.0.1:8000/api/professor/${id}`,
+                await axios.delete(`http://127.0.0.1:8000/api/ambiente/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     }
                 )
-                setDados(dados.filter((professor) => { professor.id !== id }))
+                setDados(dados.filter((ambiente) => { ambiente.id !== id }))
                 setSeta(!seta)
             } catch (error) {
                 console.error(error)
@@ -53,16 +53,16 @@ export default function Professor() {
         }
     }
 
-    const criar = async(novoProfessor)=>{
-        console.log("Novo Professor: ", novoProfessor)
+    const criar = async(novoAmbiente)=>{
+        console.log("Novo ambiente: ", novoAmbiente)
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/professores',
+            const response = await axios.post('http://127.0.0.1:8000/api/ambientes',
                 {
-                    ni: novoProfessor.ni,
-                    nome: novoProfessor.nome,
-                    email: novoProfessor.email,
-                    tel: novoProfessor.tel,
-                    ocupacao: novoProfessor.ocupacao
+                    codigo: novoAmbiente.codigo,
+                    sala: novoAmbiente.sala,
+                    capacidade: novoAmbiente.capacidade,
+                    responsavel: novoAmbiente.responsavel,
+                    periodo: novoAmbiente.periodo
                 },{
                     headers:{
                         Authorization: `Bearer ${token}`
@@ -70,7 +70,7 @@ export default function Professor() {
                 }
             )
             console.log("Dados inseridos com sucesso!", response.data)
-            setDados([...dados, novoProfessor])
+            setDados([...dados, novoAmbiente])
             setModalOpen(false)
         } catch (error) {
             console.error(error)
@@ -79,8 +79,8 @@ export default function Professor() {
     }
 
 
-    const atualizar = async (professor)=>{
-        setProfessorSelecionado(professor)
+    const atualizar = async (ambiente)=>{
+        setAmienteSelecionado(ambiente)
         setModalOpen(true)
 
     }
@@ -94,33 +94,34 @@ export default function Professor() {
                     <table>
                         <thead>
                             <tr className="icons">
-                                <div className="col2_p"></div>
-                                <div className="col3_p"><th>ID</th></div>
-                                <div className="col4_p"><th>NI</th></div>
-                                <div className="col5_p"><th>NOME</th></div>
-                                <div className="col6_p"><th>EMAIL</th></div>
-                                <div className="col7_p"><th>TELEFONE</th></div>
-                                <div className="col8_p"><th>OC</th></div>
+                                <div className="col1"></div>
+                                <div className="col2"></div>
+                                <div className="col3"><th>ID</th></div>
+                                <div className="col4"><th>CODIGO</th></div>
+                                <div className="col5"><th>SALA</th></div>
+                                <div className="col6"><th>CAPACIDADE</th></div>
+                                <div className="col7"><th>RESPONSAVEL</th></div>
+                                <div className="col8"><th>PERIODO</th></div>
                             </tr>
                         </thead>
                         <tbody> 
-                            {dados.map((professor) => (
-                                <tr key={professor.id} className="campos">
+                            {dados.map((ambiente) => (
+                                <tr key={ambiente.id} className="campos">
                                     <td className="icons">
                                         <div className="col1">
-                                            <FaEdit className="edit" onClick={() => atualizar(professor)}/>
+                                            <FaEdit className="edit" onClick={() => atualizar(ambiente)}/>
                                         </div>
                                         <div className="col2">
-                                            <FaTrash className="delete" onClick={() => apagar(professor.id)} />
+                                            <FaTrash className="delete" onClick={() => apagar(ambiente.id)} />
                                         </div>
 
                                     </td>
-                                    <div className="col3_p"><td>{professor.id}</td></div>
-                                    <div className="col4_p"><td>{professor.ni}</td></div>
-                                    <div className="col5_p"><td>{professor.nome}</td></div>
-                                    <div className="col6_p"><td>{professor.email}</td></div>
-                                    <div className="col7_p"><td>{professor.tel}</td></div>
-                                    <div className="col8_p"><td>{professor.ocupacao}</td></div>
+                                    <div className="col3"><td>{ambiente.id}</td></div>
+                                    <div className="col4"><td>{ambiente.codigo}</td></div>
+                                    <div className="col5"><td>{ambiente.sala}</td></div>
+                                    <div className="col6"><td>{ambiente.capacidade}</td></div>
+                                    <div className="col7"><td>{ambiente.responsavel}</td></div>
+                                    <div className="col8"><td>{ambiente.periodo}</td></div>
                                 </tr>
                             ))}
                         </tbody>
@@ -129,22 +130,22 @@ export default function Professor() {
 
                 <div className="footer_table">
                     <div className="btn1">
-                        <FaPlus className="adicionar" onClick={()=>{setModalOpen(true), setProfessorSelecionado(null)}}/>
+                        <FaPlus className="adicionar" onClick={()=>{setModalOpen(true), setAmienteSelecionado(null)}}/>
                     </div>
                     <div className="id">
                         <input placeholder="id" />
                     </div>
-                    <div className="nome">
-                        <input placeholder="nome do professor" />
+                    <div className="sala">
+                        <input placeholder="sala do ambiente" />
                     </div>
                     <div className="btn2">
                         <FaSearch className="procurar" />
                     </div>
                 </div>
-                <ModalProfessores
+                <ModalAmbientes
                     isOpen={modalOpen}
                     onClose={()=>setModalOpen(false)}
-                    professorSelecionado={professorSelecionado}
+                    ambienteSelecionado={ambienteSelecionado}
                     setSeta = {setSeta}
                     seta = {seta}
                 />

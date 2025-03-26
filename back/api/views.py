@@ -61,12 +61,17 @@ class TurmasDetailView(RetrieveUpdateDestroyAPIView):
 class CursosView(ListCreateAPIView):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+
     permission_classes = [IsAuthenticated]
 
 class CursosDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
     permission_classes = [IsAuthenticated]
+
+@api_view(['GET'])
+def get_tipo_curso_choices(request):
+    return Response(Curso.TIPOS_CURSOS)
 
 # AMBIENTES 
 class AmbientesView(ListCreateAPIView):
@@ -78,4 +83,8 @@ class AmbientesDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Ambiente.objects.all()
     serializer_class = AmbienteSerializer
     permission_classes = [IsAuthenticated]
+
+@api_view(['GET'])
+def get_periodo_choices(request):
+    return Response(Ambiente.PERIODOS)
     

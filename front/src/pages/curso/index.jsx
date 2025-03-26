@@ -4,10 +4,10 @@ import { FaEdit, FaTrash, FaPlus, FaSearch } from 'react-icons/fa'
 import './styles.css'
 import Header from "../../components/header";
 import Footer from "../../components/footer";
-import Modalcursoes from "../../components/modals/curso";
+import ModalCursos from "../../components/modals/curso";
 
 
-export default function curso() {
+export default function Curso() {
     const [dados, setDados] = useState([])
     const token = localStorage.getItem('token')
     const [seta, setSeta] = useState(false)
@@ -56,14 +56,13 @@ export default function curso() {
     const criar = async(novoCurso)=>{
         console.log("Novo curso: ", novoCurso)
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/cursos',
+            const response = await axios.post('http://127.0.0.1:8000/api/cursoes',
                 {
                     codigo: novoCurso.codigo,
                     curso: novoCurso.curso,
                     tipo_curso: novoCurso.tipo_curso,
                     horas_aula: novoCurso.horas_aula,
                     sigla: novoCurso.sigla
-                    
                 },{
                     headers:{
                         Authorization: `Bearer ${token}`
@@ -98,11 +97,11 @@ export default function curso() {
                                 <div className="col1"></div>
                                 <div className="col2"></div>
                                 <div className="col3"><th>ID</th></div>
-                                <div className="col4"><th>Código</th></div>
-                                <div className="col5"><th>Curso</th></div>
-                                <div className="col6"><th>Tipo Curso</th></div>
-                                <div className="col7"><th>Horas Aula</th></div>
-                                <div className="col8"><th>Sigla</th></div>
+                                <div className="col4"><th>CÓDIGO</th></div>
+                                <div className="col5"><th>CURSO</th></div>
+                                <div className="col6"><th>TIPO</th></div>
+                                <div className="col7"><th>HORAS AULA</th></div>
+                                <div className="col8"><th>SIGLA</th></div>
                             </tr>
                         </thead>
                         <tbody> 
@@ -120,9 +119,9 @@ export default function curso() {
                                     <div className="col3"><td>{curso.id}</td></div>
                                     <div className="col4"><td>{curso.codigo}</td></div>
                                     <div className="col5"><td>{curso.curso}</td></div>
-                                    <div className="col5"><td>{curso.tipo_curso}</td></div>
-                                    <div className="col5"><td>{curso.horas_aula}</td></div>
-                                    <div className="col5"><td>{curso.sigla}</td></div>
+                                    <div className="col6"><td>{curso.tipo_curso}</td></div>
+                                    <div className="col7"><td>{curso.horas_aula}</td></div>
+                                    <div className="col8"><td>{curso.sigla}</td></div>
                                 </tr>
                             ))}
                         </tbody>
@@ -137,13 +136,13 @@ export default function curso() {
                         <input placeholder="id" />
                     </div>
                     <div className="curso">
-                        <input placeholder="nome da curso" />
+                        <input placeholder="curso do curso" />
                     </div>
                     <div className="btn2">
                         <FaSearch className="procurar" />
                     </div>
                 </div>
-                <Modalcursoes
+                <ModalCursos
                     isOpen={modalOpen}
                     onClose={()=>setModalOpen(false)}
                     cursoSelecionado={cursoSelecionado}

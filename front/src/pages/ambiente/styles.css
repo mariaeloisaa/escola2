@@ -31,36 +31,37 @@ body{
     }
 }
 
+.col1{
+    /* background-color: aqua; */
+    width: 25px;
 
-.col2_p{
-    /* background-color: rgb(209, 197, 37); */
-    margin-left: -8px;
 }
-.col3_p{
+.col2{
+    /* background-color: rgb(209, 197, 37); */
+    width: 25px;
+}
+.col3{
     /* background-color: aqua; */
     width: 35px;
 }
-.col4_p{
+.col4{
     /* background-color: rgb(209, 197, 37); */
-    width: 60px;
+    width: 30px;
 }
-.col5_p{
+.col5{
     /* background-color: aqua; */
-    width: 200px;
-    background-color: aqua;
-    display: flex;
-    margin-left: -8px;
+    width: 100px;
 }
-.col6_p{
-    display: flex;
-    width: 250px;
+.col6{
+    /* background-color: rgb(209, 197, 37); */
+    width: 100px;
 }
-.col7_p{
+.col7{
     /* background-color: aqua; */
     width: 150px;
 }
 
-.col8_p{
+.col8{
     /* background-color: rgb(209, 197, 37); */
     width: 25px;
 }

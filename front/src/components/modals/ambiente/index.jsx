@@ -2,29 +2,30 @@ import React, {useEffect, useState} from "react";
 import './styles.css'
 import axios from "axios";
 
-const ModalCursos = ({
+const ModalAmbientes = ({
     isOpen,
     onClose,
-    cursoSelecionado,
+    ambienteSelecionado,
     setSeta,
     seta 
 
 })=>{
     if(!isOpen) return null
 
-    const [id, setId] = useState(cursoSelecionado?.id || '')
-    const [codigo, setCodigo] = useState(cursoSelecionado?.codigo || '')
-    const [curso, setCurso] = useState(cursoSelecionado?.curso || '')
-    const [tipo_curso, setTipo_curso] = useState(cursoSelecionado?.tipo_curso || '')
-    const [horas_aula, setHoras_aula] = useState(cursoSelecionado?.horas_aula || '')
-    const [sigla, setSigla] = useState(cursoSelecionado?.sigla || '')
-    const [tipoCursoOptions, setTipoCursoOptions] = useState([]);
+    const [id, setId] = useState(ambienteSelecionado?.id || '')
+    const [codigo, setCodigo] = useState(ambienteSelecionado?.codigo || '')
+    const [sala, setSala] = useState(ambienteSelecionado?.sala || '')
+    const [capacidade, setCapacidade] = useState(ambienteSelecionado?.capacidade || '')
+    const [responsavel, setResponsavel] = useState(ambienteSelecionado?.responsavel || '')
+    const [periodo, setPeriodo] = useState(ambienteSelecionado?.periodo || '')
+    const [periodoOptions, setPeriodoOptions] = useState([]);
     const token = localStorage.getItem('token')
+
 
     useEffect(() => {
         async function fetchTipoCursoOptions() {
             try {
-                const response = await axios.get("http://127.0.0.1:8000/api/tipo_curso_choices", 
+                const response = await axios.get("http://127.0.0.1:8000/api/periodo_choices", 
                     {
                         headers:{
                             Authorization: `Bearer ${token}`
@@ -32,7 +33,7 @@ const ModalCursos = ({
                     }
                 );
     
-                setTipoCursoOptions(response.data); // Aqui recebe a lista corretamente
+                setPeriodoOptions(response.data); // Aqui recebe a lista corretamente
     
             } catch (error) {
                 console.error("Erro ao buscar opções de tipo de curso:", error);
@@ -41,34 +42,33 @@ const ModalCursos = ({
     
         fetchTipoCursoOptions();
     }, []);
-    
 
     const handleSubmit = (e)=>{
         e.preventDefault()
-        const novoCurso = {codigo, curso, tipo_curso, horas_aula, sigla}
-        if(cursoSelecionado){
-            atualizar({...cursoSelecionado, ...novoCurso})
+        const novoAmbiente = {codigo, sala, capacidade, responsavel, periodo}
+        if(ambienteSelecionado){
+            atualizar({...ambienteSelecionado, ...novoAmbiente})
         }else{
-            console.log("Teste novo professor: ", novoCurso)
-            criar(novoCurso)
+            console.log("Teste novo ambiente: ", novoAmbiente)
+            criar(novoAmbiente)
         }
     }
 
-    const newCurso = async() =>{
+    const newAmbiente = async() =>{
         try {
-            await axios.post('http://127.0.0.1:8000/api/cursos', 
+            await axios.post('http://127.0.0.1:8000/api/ambientes', 
                 {   codigo: codigo,
-                    curso: curso,
-                    tipo_curso: tipo_curso,
-                    horas_aula: horas_aula,
-                    sigla: sigla
+                    sala: sala,
+                    capacidade: capacidade,
+                    responsavel: responsavel,
+                    periodo: periodo
                 },{
                     headers:{
                         Authorization:`Bearer ${token}`
                     }
                 }
             )
-            console.log("curso inserido sucefful")
+            console.log("prof inserido sucefful")
             setSeta(!seta)
             onClose(true)
         } catch (error) {
@@ -76,14 +76,14 @@ const ModalCursos = ({
         }
     }
 
-    const editCurso = async() =>{
+    const editAmbiente = async() =>{
         try {
-            await axios.put(`http://127.0.0.1:8000/api/curso/${cursoSelecionado.id}`, 
+            await axios.put(`http://127.0.0.1:8000/api/ambiente/${ambienteSelecionado.id}`, 
                 {   codigo: codigo,
-                    curso: curso,
-                    tipo_curso: tipo_curso,
-                    horas_aula: horas_aula,
-                    sigla: sigla
+                    sala: sala,
+                    capacidade: capacidade,
+                    responsavel: responsavel,
+                    periodo: periodo
                 },{
                     headers:{
                         Authorization:`Bearer ${token}`
@@ -104,7 +104,7 @@ const ModalCursos = ({
                 <div className="head-modal">
                 <button className="close-button" onClick={onClose}>X</button>
                 </div>
-                <h2>{cursoSelecionado ? `Editar | ${cursoSelecionado.id}` : "Cadastrar"}</h2>
+                <h2>{ambienteSelecionado ? `Editar | ${ambienteSelecionado.id}` : "Cadastrar"}</h2>
                 <div className="body-modal">
                     <form onSubmit={handleSubmit}>
                         <div className="caixa1">
@@ -115,19 +115,31 @@ const ModalCursos = ({
                                 onChange={(e)=>setCodigo(e.target.value)}
                             />
                             <input
-                                className="curso-modal"
-                                value={curso}
-                                placeholder="curso"
-                                onChange={(e)=>setCurso(e.target.value)}
+                                className="sala-modal"
+                                value={sala}
+                                placeholder="sala"
+                                onChange={(e)=>setSala(e.target.value)}
+                            />
+                            <input
+                                className="capacidade-modal"
+                                value={capacidade}
+                                placeholder="capacidade"
+                                onChange={(e)=>setCapacidade(e.target.value)}
+                            />
+                            <input
+                                className="responsavel-modal"
+                                value={responsavel}
+                                placeholder="responsavel"
+                                onChange={(e)=>setResponsavel(e.target.value)}
                             />
                             <select
-                                className="tipo_curso-modal"
-                                value={tipo_curso}
-                                onChange={(e) => setTipo_curso(e.target.value)}
+                                className="periodo-modal"
+                                value={periodo}
+                                onChange={(e) => setPeriodo(e.target.value)}
                             >
                                 <option value="">Selecione o tipo</option>
-                                {tipoCursoOptions.length > 0 ? (
-                                    tipoCursoOptions.map((option) => (
+                                {periodoOptions.length > 0 ? (
+                                    periodoOptions.map((option) => (
                                         <option key={option[0]} value={option[0]}>
                                             {option[1]}
                                         </option>
@@ -136,18 +148,6 @@ const ModalCursos = ({
                                     <option disabled>Carregando...</option>
                                 )}
                             </select>
-                            <input
-                                className="horas_aula-modal"
-                                value={horas_aula}
-                                placeholder="horas_aula"
-                                onChange={(e)=>setHoras_aula(e.target.value)}
-                            />
-                            <input
-                                className="sigla-modal"
-                                value={sigla}
-                                placeholder="sigla"
-                                onChange={(e)=>setSigla(e.target.value)}
-                            />
                         </div>
                         <div className="caixa2">
                             
@@ -158,8 +158,8 @@ const ModalCursos = ({
                     <button 
                         className= "button-save" 
                         type="submit" 
-                        onClick={cursoSelecionado? editCurso : newCurso}>
-                        {cursoSelecionado ? "Atualizar" : "Salvar"}</button> 
+                        onClick={ambienteSelecionado? editAmbiente : newAmbiente}>
+                        {ambienteSelecionado ? "Atualizar" : "Salvar"}</button> 
                 </div>
             </div>
         </div>
@@ -167,4 +167,4 @@ const ModalCursos = ({
 }
 
 
-export default ModalCursos
+export default ModalAmbientes

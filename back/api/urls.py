@@ -27,9 +27,12 @@ urlpatterns = [
     # CURSO
     path('curso/<int:pk>', CursosDetailView.as_view()),
     path('cursos', CursosView.as_view()),
+    path('tipo_curso_choices', get_tipo_curso_choices),
 
     # AMBIENTE
     path('ambiente/<int:pk>', AmbientesDetailView.as_view()),
     path('ambientes', AmbientesView.as_view()),
+    path('periodo_choices', get_periodo_choices),
+    
 ]
 

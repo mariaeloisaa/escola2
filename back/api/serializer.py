@@ -18,10 +18,10 @@ class TurmaSerializer(serializers.ModelSerializer):
 
 class CursoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Turma
+        model = Curso
         fields = '__all__'
 
 class AmbienteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Turma
+        model = Ambiente
         fields = '__all__'
