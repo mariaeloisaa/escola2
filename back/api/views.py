@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import *
 from .serializer import *
+from rest_framework import generics
+from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
@@ -88,3 +90,7 @@ class AmbientesDetailView(RetrieveUpdateDestroyAPIView):
 def get_periodo_choices(request):
     return Response(Ambiente.PERIODOS)
     
+#SIGN UP
+class SignUpView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer

@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import './styles.css'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { LuUserRound } from "react-icons/lu";
 
 export default function Login() {
@@ -47,6 +48,10 @@ export default function Login() {
                 <button className="btn" onClick={logar}>
                     Enter
                 </button>
+
+                <p className="text-center mt-4">
+                    Não possui conta? <Link to="/signup" className="text-blue-500">Cadastre-se</Link>
+                </p>
         </div>
     )
 }

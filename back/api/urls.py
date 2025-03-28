@@ -33,6 +33,11 @@ urlpatterns = [
     path('ambiente/<int:pk>', AmbientesDetailView.as_view()),
     path('ambientes', AmbientesView.as_view()),
     path('periodo_choices', get_periodo_choices),
+
+    # LOGIN / SIGN UP
+    path('signup/', SignUpView.as_view(), name='signup'),
+    path('login/', TokenObtainPairView.as_view(), name='login'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     
 ]
 

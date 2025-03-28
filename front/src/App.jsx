@@ -7,6 +7,7 @@ import Disciplina from "./pages/disciplina";
 import Turma from "./pages/turma";
 import Curso from "./pages/curso";
 import Ambiente from "./pages/ambiente";
+import SignUp from "./pages/cadastro"
 
 export default function App(){
   return(
@@ -20,6 +21,7 @@ export default function App(){
         <Route path="/turma" element={<Turma/>}/>
         <Route path="/curso" element={<Curso/>}/>
         <Route path="/ambiente" element={<Ambiente/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
       </Routes>
     </Router>
   )
